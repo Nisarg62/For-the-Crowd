@@ -21,7 +21,7 @@ function Cards({ setPageState, data, setCampaignIndex }) {
           objectFit='cover'
         />
         <Stack mt='6' spacing='3'>
-        <Heading size='md' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between' }} >{data.title.length > 37 ? `${data.title.substring(0, 47)}...` : data.title}<FaHandsHelping color={'tomato'} /></Heading>
+        <Heading size='md' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between' }} >{data.title.length > 50 ? `${data.title.substring(0, 50)}...` : data.title}<FaHandsHelping color={'tomato'} /></Heading>
           <Text fontSize='sm' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between', width: '35%' }} ><BiWalletAlt color='tomato' /> <b>{' 0x369...0b9'}</b></Text>
           <Text color='tomato' fontSize='2xl' style={{display: 'flex', justifyContent: 'space-between'}} >
             {data.balance} ETH {`($${data.balance*1661}`.substring(0, 7) +`)`}
