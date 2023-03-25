@@ -335,7 +335,17 @@ function CampaignPage({ setPageState, campaign, currentAdd, signer, etherToWei, 
                   <Input type='number' placeholder={campaign.minContri} onChange={(e) => {setContribution(e.target.value)}} />
                   <InputRightAddon children='ETH' backgroundColor='#29da2e' color='white' />
                 </InputGroup>
-                <Button isActive={errorState} onClick={() => {if(!errorState)handleContribution()}} style={{ width: '100%', marginTop: '5%' }} colorScheme='green' backgroundColor={'#29da2e'} leftIcon={<BiDonateHeart />} >Contribute</Button>
+                {
+                  campaign.balance >= campaign.targetAmt
+                  ?
+                  (
+                    <Text color = 'green' fontWeight = 'bold' textAlign='center' > You can't currently donate as the target is reached.</Text>
+                  )
+                  :
+                  (
+                    <Button isActive={errorState} onClick={() => {if(!errorState)handleContribution()}} style={{ width: '100%', marginTop: '5%' }} colorScheme='green' backgroundColor={'#29da2e'} leftIcon={<BiDonateHeart />} >Contribute</Button>
+                  )
+                }
               </CardBody>
             </Card>
           )
@@ -366,7 +376,7 @@ function CampaignPage({ setPageState, campaign, currentAdd, signer, etherToWei, 
           </CardBody>
         </Card>
         {
-          (campaign.manager.toUpperCase() === currentAdd.toUpperCase()) && campaign.active
+          (campaign.manager.toUpperCase() === currentAdd.toUpperCase()) && campaign.active && (Number(campaign.balance) > 0)
           ?
           (
             <Card style={{ marginBottom: '3%' }} >
@@ -443,7 +453,7 @@ function CampaignPage({ setPageState, campaign, currentAdd, signer, etherToWei, 
           null
         }
         {
-          (campaign.manager.toUpperCase() === currentAdd.toUpperCase()) && (campaign.balance >= campaign.targetAmt)
+          campaign.manager.toUpperCase() === currentAdd.toUpperCase()
           ?
             switchLoading
             ?
