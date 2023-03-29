@@ -157,7 +157,7 @@ function ViewRequest({ setPageState, campaign, currentAdd, signer, weiToEther, s
   return (
     <div className='requests-container' >
         <div onClick={() => {
-            setPageState("campaign")
+            setPageState("viewRequests")
         }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', width: '8%' }} >
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
