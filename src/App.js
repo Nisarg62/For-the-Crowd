@@ -27,6 +27,7 @@ function App() {
   const [signer, setSigner] = useState()
   const [loading, setLoading] = useState(true)
   const [pageState, setPageState] = useState('home')
+  const [pState, setPState] = useState('')
   const [totalEther, setTotalEther] = useState(0)
 
   const [campaignsLoading, setCampaignsLoading] = useState(true)
@@ -634,7 +635,7 @@ function App() {
           pageState === 'campaign'
           ?
           (
-            <CampaignPage setPageState={setPageState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} etherToWei={etherToWei} setCallData={setCallData} />
+            <CampaignPage setPageState={setPageState} setPState = {setPState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} etherToWei={etherToWei} setCallData={setCallData} />
           )
           :
           null
@@ -652,7 +653,7 @@ function App() {
           pageState === 'viewRequest'
           ?
           (
-            <ViewRequest setPageState={setPageState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} weiToEther={weiToEther} setCallData={setCallData} allCampaigns={allCampaigns} />
+            <ViewRequest setPageState={setPageState} pState = {pState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} weiToEther={weiToEther} setCallData={setCallData} allCampaigns={allCampaigns} />
           )
           :
           null
@@ -679,7 +680,7 @@ function App() {
           pageState === 'viewRequests'
           ?
           (
-            <ViewRequests setPageState={setPageState} donatedCampaigns={donatedCampaigns} setCampaignIndex={setCampaignIndex} />
+            <ViewRequests setPageState={setPageState} setPState={setPState} donatedCampaigns={donatedCampaigns} setCampaignIndex={setCampaignIndex} />
           )
           :
           null

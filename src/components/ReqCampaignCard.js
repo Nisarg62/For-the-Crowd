@@ -3,10 +3,11 @@ import { Button, Heading, Text } from '@chakra-ui/react'
 import { Card, CardBody, Stack, Image, Progress } from '@chakra-ui/react'
 import { FaHandHoldingUsd, FaHandsHelping } from 'react-icons/fa'
 
-function ReqCampaignCard({ setPageState, setCampaignIndex, camp }) {
+function ReqCampaignCard({ setPageState, setPState, setCampaignIndex, camp }) {
 
     const handleCampaignPage = () => {
         setCampaignIndex(camp.index)
+        setPState('viewRequests')
         setPageState('viewRequest')
         }
 

@@ -5,7 +5,7 @@ import { BiDonateHeart } from 'react-icons/bi'
 import { BsFillPeopleFill, BsFillChatSquareQuoteFill } from 'react-icons/bs'
 import { FaAddressCard } from 'react-icons/fa'
 
-function CampaignPage({ setPageState, campaign, currentAdd, signer, etherToWei, setCallData }) {
+function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, etherToWei, setCallData }) {
 
   const toast = useToast()
   const [switchLoading, setSwitchLoading] = useState(false)
@@ -357,6 +357,7 @@ function CampaignPage({ setPageState, campaign, currentAdd, signer, etherToWei, 
           <Box
               onClick={() => {
                 setPageState('viewRequest')
+                setPState("campaign")
               }}
               width='100%'
               as='button'

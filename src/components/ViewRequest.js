@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Button, Heading, Text, Table, Thead, Tbody, Tr, Th, Td, TableCaption, TableContainer, useToast, Skeleton } from '@chakra-ui/react'
 import { MdArrowBack } from 'react-icons/md'
 
-function ViewRequest({ setPageState, campaign, currentAdd, signer, weiToEther, setCallData, allCampaigns }) {
+function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiToEther, setCallData, allCampaigns }) {
     
     const toast = useToast()
     const [loading, setLoading] = useState(true)
@@ -157,7 +157,7 @@ function ViewRequest({ setPageState, campaign, currentAdd, signer, weiToEther, s
   return (
     <div className='requests-container' >
         <div onClick={() => {
-            setPageState("viewRequests")
+            setPageState(pState)
         }} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', width: '8%' }} >
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
