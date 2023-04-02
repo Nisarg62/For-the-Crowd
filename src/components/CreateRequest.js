@@ -40,7 +40,6 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
             })
             res.wait().then(receipt => {
                 setLoading(false)
-              console.log(receipt)
               setCallData(receipt)
               setPageState('viewRequest')
               toast({
@@ -59,7 +58,6 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
                   duration: 9000,
                   isClosable: true,
                 })
-              console.log(err)
           })
           }).catch(err => {
             setLoading(false)
@@ -70,7 +68,6 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
                 duration: 9000,
                 isClosable: true,
               })
-            console.log(err)
         })
     }
 

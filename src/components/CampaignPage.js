@@ -34,7 +34,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
       })
       res.wait().then(receipt => {
         setContriLoading(false)
-        console.log(receipt)
         setCallData(receipt)
         toast({
           title: 'Contribution Added.',
@@ -52,7 +51,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
             duration: 9000,
             isClosable: true,
           })
-        console.log(err)
     })
     }).catch(err => {
       setContriLoading(false)
@@ -63,7 +61,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
           duration: 9000,
           isClosable: true,
         })
-      console.log(err)
   })
   }
 
@@ -81,7 +78,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
       res.wait().then(receipt => {
         setSwitchLoading(false)
         onClose()
-        console.log(receipt)
         setCallData(receipt)
         toast({
           title: `Campaign ${campaign.active ? 'deactivated' : 'activated'}.`,
@@ -99,7 +95,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
             duration: 9000,
             isClosable: true,
           })
-        console.log(err)
     })
     }).catch(err => {
       setSwitchLoading(false)
@@ -110,7 +105,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
           duration: 9000,
           isClosable: true,
         })
-      console.log(err)
   })
   }
 
@@ -128,7 +122,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
       res.wait().then(receipt => {
         setTargetLoading(false)
         setNewTarget('')
-        console.log(receipt)
         setCallData(receipt)
         toast({
           title: 'Target Modified.',
@@ -147,7 +140,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
             duration: 9000,
             isClosable: true,
           })
-        console.log(err)
     })
     }).catch(err => {
       setTargetLoading(false)
@@ -159,7 +151,6 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
           duration: 9000,
           isClosable: true,
         })
-      console.log(err)
   })
   }
 

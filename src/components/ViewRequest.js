@@ -8,6 +8,8 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
     const [loading, setLoading] = useState(true)
     const [approveLoading, setApproveLoading] = useState(false)
     const [finalLoading, setFinalLoading] = useState(false)
+    const [reqIndex, setReqIndex] = useState(null)
+    const [finalIndex, setFinalIndex] = useState(null)
     const [requestsData, setRequestsData] = useState([])
 
     useEffect(() => {
@@ -43,7 +45,6 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                     duration: 9000,
                     isClosable: true,
                   })
-                console.log(error)
             }
             finally{
                 setLoading(false)
@@ -67,7 +68,7 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             res.wait().then(receipt => {
                 setLoading(true)
                 setApproveLoading(false)
-              console.log(receipt)
+              setReqIndex(null)
               setCallData(receipt)
               setPageState('viewRequest')
               toast({
@@ -80,6 +81,7 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             }).catch(err => {
                 setLoading(true)
                 setApproveLoading(false)
+                setReqIndex(null)
               toast({
                   title: 'Something went wrong',
                   description: "Please try again in some time",
@@ -87,11 +89,11 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                   duration: 9000,
                   isClosable: true,
                 })
-              console.log(err)
           })
           }).catch(err => {
             setLoading(true)
             setApproveLoading(false)
+            setReqIndex(null)
             toast({
                 title: 'Something went wrong',
                 description: "Please try again in some time",
@@ -99,8 +101,17 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                 duration: 9000,
                 isClosable: true,
               })
-            console.log(err)
         })
+    }
+
+    function approveCheck(){
+        toast({
+            title: 'Not Approved',
+            description: "Withdrawl request not yet approved",
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+          })
     }
 
     function finalizeReq(id){
@@ -117,8 +128,8 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             res.wait().then(receipt => {
                 setLoading(true)
                 setFinalLoading(false)
-              console.log(receipt)
               setCallData(receipt)
+              setFinalIndex(null)
               setPageState('viewRequest')
               toast({
                 title: 'Request Finalized.',
@@ -130,6 +141,7 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             }).catch(err => {
                 setLoading(true)
                 setFinalLoading(false)
+                setFinalIndex(null)
               toast({
                   title: 'Something went wrong',
                   description: "Please try again in some time",
@@ -137,11 +149,11 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                   duration: 9000,
                   isClosable: true,
                 })
-              console.log(err)
           })
           }).catch(err => {
             setLoading(true)
             setFinalLoading(false)
+            setFinalIndex(null)
             toast({
                 title: 'Something went wrong',
                 description: "Please try again in some time",
@@ -149,7 +161,6 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                 duration: 9000,
                 isClosable: true,
               })
-            console.log(err)
         })
     }
     
@@ -259,7 +270,22 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                                         :
                                         (
                                             <Td>
-                                                <Button isLoading={approveLoading} isActive={!campaign.active} onClick={() => approveReq(id)} colorScheme='orange' >Approve</Button>
+                                                {
+                                                    reqIndex === id
+                                                    ?
+                                                    (
+                                                        <Button isLoading={approveLoading} isActive={!campaign.active} onClick={() => {
+                                                            approveReq(id)
+                                                        }} colorScheme='orange' >Approve</Button>
+                                                    )
+                                                    :
+                                                    (
+                                                        <Button isActive={(reqIndex === null) ? false : true} onClick={(reqIndex === null) ? () => {
+                                                            approveReq(id)
+                                                            setReqIndex(id)
+                                                        }:null} colorScheme='orange' >Approve</Button>
+                                                    )
+                                                }
                                             </Td>
                                         )
                                     :
@@ -285,9 +311,38 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
                                     !request.completed && campaign.active
                                     ?
                                     (
-                                        <Td>
-                                            <Button isLoading={finalLoading} onClick={() => finalizeReq(id)} colorScheme='green' >Finalize</Button>
-                                        </Td>
+                                         request.approvalCount === campaign.appCount
+                                         ?
+                                         (
+                                            <Td>
+                                                {finalIndex === id
+                                                ?
+                                                (
+                                                    <Button isLoading={finalLoading} onClick={() => finalizeReq(id)} colorScheme='green' >Finalize</Button>
+                                                )
+                                                :
+                                                (
+                                                    <Button isActive={(finalIndex === null) ? false : true} onClick={(finalIndex === null) ? () => {
+                                                        finalizeReq(id)
+                                                        setFinalIndex(id)
+                                                    }:null} colorScheme='green' >Finalize</Button>
+                                                )}
+                                            </Td>
+                                         )
+                                         :
+                                         (
+                                            <Td>
+                                                {finalIndex === id
+                                                ?
+                                                (
+                                                    <Button onClick={() => approveCheck()} colorScheme='green' >Finalize</Button>
+                                                )
+                                                :
+                                                (
+                                                    <Button onClick={(finalIndex === null) ? () => approveCheck() : null} isActive={(finalIndex === null) ? false : true} colorScheme='green' >Finalize</Button>
+                                                )}
+                                            </Td>
+                                         )
                                     )
                                     :
                                     (

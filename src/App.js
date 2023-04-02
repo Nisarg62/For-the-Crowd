@@ -476,8 +476,6 @@ function App() {
               campaignContract.approvers(signerRes[0]).then(approval => {
                 approver = approval
 
-                console.log(res[9])
-
                 let data = {
                   minContri: weiToEther(res[0]),
                   balance: weiToEther(res[1]),
@@ -525,7 +523,6 @@ function App() {
                 setDonatedCampaigns([...donatedCampaigns])
               })
               .catch(err=>{
-                console.log(err)
                 toast({
                   title: 'Something went wrong',
                   description: "Please try again in some time",
@@ -536,7 +533,6 @@ function App() {
               })
             })
             .catch(err => {
-              console.log(err)
               toast({
                 title: 'Something went wrong',
                 description: "Please try again in some time",
@@ -551,7 +547,6 @@ function App() {
   
         })
         .catch(err => {
-          console.log(err)
           toast({
             title: 'Something went wrong',
             description: "Please try again in some time",
@@ -563,7 +558,6 @@ function App() {
 
       })
       .catch(err=>{
-        console.log(err)
         toast({
           title: 'Something went wrong',
           description: "Please try again in some time",

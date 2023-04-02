@@ -61,7 +61,6 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
               })
             res.wait().then(receipt => {
                 setloading(false)
-                console.log(receipt)
                 handleHome()
                 setCallData(receipt)
                 toast({
@@ -81,7 +80,6 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                     duration: 9000,
                     isClosable: true,
                   })
-                console.log(err)
             })
         }).catch(err => {
             setloading(false)
@@ -92,7 +90,6 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                 duration: 9000,
                 isClosable: true,
               })
-            console.log(err)
         })
     }
 
