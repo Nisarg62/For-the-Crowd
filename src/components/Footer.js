@@ -7,7 +7,7 @@ function Footer({ setPageState }) {
     <div className='footer-container' >
         <Heading fontSize='4xl' color='black' style={{ textAlign: 'center' }} >For The Crowd</Heading>
         <div className='links' >
-            <Link href='https://github.com/Nisarg62?tab=repositories' isExternal style={{ display: 'flex', alignItems: 'center' }} >
+            <Link href='https://github.com/Nisarg62/For-the-Crowd' isExternal style={{ display: 'flex', alignItems: 'center' }} >
                 <AiFillGithub />Github
             </Link>
             <Link onClick={() => {
