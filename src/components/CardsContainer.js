@@ -4,7 +4,7 @@ import { BiWalletAlt } from 'react-icons/bi'
 import { FaHandHoldingUsd, FaHandsHelping } from 'react-icons/fa'
 import Cards from './Cards'
 
-function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading }) {
+function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading, setTypeWriter}) {
   const load = [1,2,3,4]
   return (
     <div className='cards-container' >
@@ -38,7 +38,8 @@ function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading 
           ))
           :
           allCampaigns.map((data, index) => data.active ? (
-            <Cards setPageState={setPageState} data={data} key={index} setCampaignIndex={setCampaignIndex} />
+            <Cards setPageState={setPageState} data={data} key={index} setCampaignIndex={setCampaignIndex} 
+            setTypeWriter={setTypeWriter} />
           ):null)
         }
     </div>

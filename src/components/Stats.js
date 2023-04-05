@@ -1,4 +1,5 @@
 import React from 'react'
+import useEffect from 'react';
 import {
     Stat,
     StatLabel,
@@ -8,21 +9,28 @@ import {
   } from '@chakra-ui/react'
 import { FaEthereum } from 'react-icons/fa'
 
-function Stats({ allCampaigns, totalEther }) {
+
+
+function Stats({ allCampaigns, totalEther, setTypeWriter, typewriter}) {
+
+  const handleAnimation = () => {
+    setTypeWriter(true)
+  }
+
+  const classes = 'stats aniDesc'
+
   return (
-    <div className='stats' >
-        <Text fontSize='4xl' color='white' >Bring a creative project to life.</Text>
+    <div className={classes}>
+        <Text className={typewriter? 'desc2' : 'desc'} fontSize='4xl' color='white' onAnimationEnd={handleAnimation} >Bring a creative project to life.</Text>
         <div className='stats-items' >
             <Stat className='stats-item'>
-                <StatNumber>{allCampaigns.length}</StatNumber>
-                <StatLabel>Projects Funded</StatLabel>
-                {/* <StatHelpText>Feb 12 - Feb 28</StatHelpText> */}
+                <StatNumber className='aniDesc'>{allCampaigns.length}</StatNumber>
+                <StatLabel className={typewriter? 'desc2' : 'desc'} >Projects Funded</StatLabel>
             </Stat>
             <Divider orientation='vertical'/>
             <Stat className='stats-item'>
-                <StatNumber style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >{`${totalEther}`.substring(0, 8)} ETH<FaEthereum/></StatNumber>
-                <StatLabel>Towards Creative Work</StatLabel>
-                {/* <StatHelpText>Feb 12 - Feb 28</StatHelpText> */}
+                <StatNumber className='aniDesc' style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} >{`${totalEther}`.substring(0, 8)} ETH<FaEthereum/></StatNumber>
+                <StatLabel className={typewriter? 'desc2' : 'desc'} >Towards Creative Work</StatLabel>
             </Stat>
         </div>
     </div>

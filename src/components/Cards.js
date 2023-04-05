@@ -3,9 +3,10 @@ import { Card, CardBody, Stack, Heading, Text, Divider, Button, Image, Progress 
 import { BiWalletAlt } from 'react-icons/bi'
 import { FaHandHoldingUsd, FaHandsHelping } from 'react-icons/fa'
 
-function Cards({ setPageState, data, setCampaignIndex }) {
+function Cards({ setPageState, data, setCampaignIndex, setTypeWriter}) {
 
   const handleCampaignPage = () => {
+    setTypeWriter(true)
     setCampaignIndex(data.index)
     setPageState('campaign')
   }

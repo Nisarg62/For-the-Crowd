@@ -224,3 +224,84 @@
   clip-path: polygon(10% 0%, 70% 0%, 100% 0%, 100% 70%, 90% 100%, 0% 100%, 0% 70%, 0% 30%);
   border: 5px solid #ff8b00;
 }
+
+.typewriter1{
+  overflow: hidden;
+  white-space:nowrap;
+  animation: 
+  typing 1s,
+  blink-caret 1s infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.typewriter2{
+  overflow: hidden;
+  white-space:nowrap;
+  visibility: hidden;
+  animation: 
+  typing 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  animation-timing-function: linear;
+}
+
+.aniBtn{
+  animation: fadeIn 3.5s;
+  animation-fill-mode: forwards;
+}
+
+.aniDesc{
+  animation: fadeIn 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.desc{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space:nowrap;
+  animation: 
+  typing 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+  animation-timing-function: linear;
+  visibility: hidden;
+}
+
+.desc2{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+  white-space:nowrap;
+  animation: 
+  typing 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  animation-timing-function: linear;
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+  	opacity: 0;
+  }
+  100% {
+    visibility: visible;
+ 	  opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100%;}
+  100%{
+    visibility: visible;
+  }
+}
+
+
+
+

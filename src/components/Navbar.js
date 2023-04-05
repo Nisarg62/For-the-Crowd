@@ -13,9 +13,10 @@ import { AiOutlineAppstoreAdd, AiOutlineInfoCircle, AiOutlineHome } from 'react-
 import { BsChevronDown, BsFillChatSquareQuoteFill } from 'react-icons/bs'
 import { MdCampaign } from 'react-icons/md'
 
-function Navbar({ address, loading, setPageState, pageState, metamask }) {
+function Navbar({ address, loading, setPageState, pageState, metamask, setTypeWriter }) {
 
   const handleCreateCampaign = () => {
+    setTypeWriter(true)
     setPageState('createCampaign')
   }
 
@@ -28,6 +29,16 @@ function Navbar({ address, loading, setPageState, pageState, metamask }) {
     if(element){
       element.scrollIntoView({behavior: 'smooth'})
     }
+  }
+
+  const handleMyCampaign = () => {
+    setTypeWriter(true)
+    setPageState('myCampaigns')
+  }
+
+  const handleViewRequests = () => {
+    setTypeWriter(true)
+    setPageState('viewRequests')
   }
 
   return (
@@ -72,8 +83,8 @@ function Navbar({ address, loading, setPageState, pageState, metamask }) {
                         <MenuList fontWeight='bold'>
                           <MenuGroup title='Your Profile' color='tomato' fontSize='1.1rem' >
                             <MenuDivider />
-                            <MenuItem onClick={() => {setPageState('myCampaigns')}} ><MdCampaign color='tomato' style={{ marginRight: '5%', fontSize: '1.5rem' }} /> My Campaigns</MenuItem>
-                            <MenuItem onClick={() => {setPageState('viewRequests')}} ><BsFillChatSquareQuoteFill color='tomato' style={{ marginRight: '5%', fontSize: '1.5rem' }} /> View Requests</MenuItem>
+                            <MenuItem onClick= {handleMyCampaign} ><MdCampaign color='tomato' style={{ marginRight: '5%', fontSize: '1.5rem' }} /> My Campaigns</MenuItem>
+                            <MenuItem onClick={handleViewRequests} ><BsFillChatSquareQuoteFill color='tomato' style={{ marginRight: '5%', fontSize: '1.5rem' }} /> View Requests</MenuItem>
                           </MenuGroup>
                         </MenuList>
                       </>

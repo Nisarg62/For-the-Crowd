@@ -22,7 +22,7 @@ import ViewRequest from './components/ViewRequest';
 function App() {
 
   const [callData, setCallData] = useState()
-
+  const [typewriter, setTypeWriter] = useState(false)
   const [address, setAddress] = useState('')
   const [signer, setSigner] = useState()
   const [loading, setLoading] = useState(true)
@@ -446,36 +446,36 @@ function App() {
   const getAllCampaignsData = () => {
 
     if(window.ethereum){
-
+      
       setMetamask(true)
 
       const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  
+      
       const contract = new ethers.Contract('0xb2a95452beb0b349315667aa9a5ea37ac5b82ea3', abi, provider)
-
+      
       setCampaignFactory(contract)
-
+      
       provider.send("eth_requestAccounts", [])
       .then((signerRes)=>{
         const signer = provider.getSigner();
         setSigner(signer);
         setAddress(signerRes[0]);
         setLoading(false)
-
-
+        
+        
         contract.getDeployedCampaigns().then((depCampaigns)=>{
-
+          
           let campaignsEther = 0;
-  
+          
           depCampaigns.map((add, index) => {
             const campaignContract = new ethers.Contract(add, campaignAbi, provider)
-         
+            
             campaignContract.getSummary().then((res) => {
               let approver;
               
               campaignContract.approvers(signerRes[0]).then(approval => {
                 approver = approval
-
+                
                 let data = {
                   minContri: weiToEther(res[0]),
                   balance: weiToEther(res[1]),
@@ -492,13 +492,13 @@ function App() {
                   active: res[9],
                   approver
                 }
-
+                
                 campaignsEther += Number(data.balance)
                 
                 if(!allCampaigns.find(camp => camp.address === data.address)){
                   allCampaigns.push(data)
                 }
-
+                
                 allCampaigns.map(camp => {
                   if(camp.address === data.address){
                     camp.active = data.active
@@ -508,11 +508,11 @@ function App() {
                     camp.appCount = data.appCount
                   }
                 })
-  
+                
                 if(!managerCampaigns.find(camp => camp.address === data.address) && (data.manager.toUpperCase() === signerRes[0].toUpperCase())){
                   managerCampaigns.push(data)
                 }
-  
+                
                 if(!donatedCampaigns.find(camp => camp.address === data.address) && approver){
                   donatedCampaigns.push(data)
                 }
@@ -530,6 +530,7 @@ function App() {
                   duration: 9000,
                   isClosable: true,
                 })
+                
               })
             })
             .catch(err => {
@@ -540,6 +541,7 @@ function App() {
                 duration: 9000,
                 isClosable: true,
               })
+              
             })
           })
           
@@ -554,6 +556,7 @@ function App() {
             duration: 9000,
             isClosable: true,
           })
+  
         })
 
       })
@@ -575,7 +578,7 @@ function App() {
   useEffect(() => {
     getAllCampaignsData()
   }, [callData]);
-
+  
   useEffect(() => {
     scrollTop.current.scrollTo(0, 0)
   }, [pageState])
@@ -595,7 +598,8 @@ function App() {
       <Alert metamask={metamask} />
       <div className={pageState === 'home' ? 'background' : 'background-two'} ></div>
       <div className='scroll-container' ref={scrollTop} >
-        <Navbar address={address} loading={loading} metamask={metamask} pageState={pageState} setPageState={setPageState} />
+        <Navbar address={address} loading={loading} metamask={metamask} pageState={pageState} setPageState={setPageState}
+        setTypeWriter = {setTypeWriter} />
         <Divider/>
         {
           pageState==='createCampaign'
@@ -612,12 +616,12 @@ function App() {
           (
             <>
             <div className='design-header' >
-              <Header setPageState={setPageState} />
+              <Header setPageState={setPageState} callData = {typewriter} setTypeWriter={setTypeWriter}/>
               <div className='design' ></div>
             </div>
-            <Stats allCampaigns={allCampaigns} totalEther={totalEther} />
+            <Stats allCampaigns={allCampaigns} totalEther={totalEther} setTypeWriter={setTypeWriter} typewriter= {typewriter}/>
             <Heading fontSize='4xl' color={'white'} style={{ width:'23%', margin: '5%', marginBottom: '2%', marginTop: '8%' , display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} ><TbLayersLinked/> Active Campaigns</Heading>
-            <CardsContainer loading={campaignsLoading} setPageState={setPageState} allCampaigns={allCampaigns} setCampaignIndex={setCampaignIndex} />
+            <CardsContainer loading={campaignsLoading} setPageState={setPageState} allCampaigns={allCampaigns} setCampaignIndex={setCampaignIndex} setTypeWriter={setTypeWriter}/>
             <Heading id='howitworks' fontSize='4xl' color={'white'} style={{ width:'21%', margin: '5%', marginBottom: '2%', marginTop: '8%' , display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} ><BiShowAlt/> How FTC Works</Heading>
             <Working/>
             </>
