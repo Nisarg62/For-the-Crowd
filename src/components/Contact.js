@@ -16,18 +16,21 @@ function Contact({ setPageState }) {
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-        <Heading style={{ marginBottom: '5%' }} >Contact Us</Heading>
+        <Heading className='typewriter3' style={{ marginBottom: '5%' }} >Contact Us</Heading>
         <div style={{ display: 'flex', flexDirection: 'column' }} >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <AiFillMail color='tomato' fontSize='700%' width='40%' />
-                <Text fontWeight='bold' fontSize='1.2rem' width='60%' >nisarg.39@nmims.edu.in
-                                                                    keshav.sureka57@nmims.edu.in
-                                                                    anshul.inani19@nmims.edu.in
-                                                                    ramansh.bhatia05@nmims.edu.in</Text>
+                <Text fontWeight='bold' fontSize='1.2rem' width='60%' >
+                                                                    <p className='aniDesc'>nisarg.39@nmims.edu.in</p>
+                                                                    <p className='aniDesc'>keshav.sureka57@nmims.edu.in</p>
+                                                                    <p className='aniDesc'>anshul.inani19@nmims.edu.in</p>
+                                                                    <p className='aniDesc'>ramansh.bhatia05@nmims.edu.in</p>
+                                                                    </Text>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <BsMailbox2 color='tomato' fontSize='700%' width='40%' />
-                <Text fontWeight='bold' fontSize='1.2rem' width='60%' >Mukesh Patel School Of Technology Management, Mumbai.</Text>
+                <Text fontWeight='bold' fontSize='1.2rem' width='60%' >
+                    <p className='aniDesc' >Mukesh Patel School Of Technology Management, Mumbai.</p></Text>
             </div>
         </div>
     </div>

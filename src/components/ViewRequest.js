@@ -173,8 +173,8 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-        <Heading style={{ marginBottom: '2%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >Withdrawal Requests <Text color='#0000006e' >{campaign.balance} ETH {`($${campaign.balance * 1661}`.substring(0, 7) +`)`}</Text> </Heading>
-        <Text fontSize='2xl' style={{ marginBottom: '5%' }} >{campaign.title}</Text>
+        <Heading className='aniDesc' style={{ marginBottom: '2%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >Withdrawal Requests <Text color='#0000006e' >{campaign.balance} ETH {`($${campaign.balance * 1661}`.substring(0, 7) +`)`}</Text> </Heading>
+        <Text className='typewriter3' fontSize='2xl' style={{ marginBottom: '5%' }} >{campaign.title}</Text>
 
         <TableContainer>
             <Table colorScheme='orange'>

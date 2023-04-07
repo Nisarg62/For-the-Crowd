@@ -137,6 +137,10 @@
 }
 
 .form-container{
+  position: relative;
+  overflow: hidden;
+
+  width: auto;
   background: white;
   margin: 5% 25%;
   padding: 5%;
@@ -226,11 +230,10 @@
 }
 
 .typewriter1{
-  overflow: hidden;
+  overflow-x: clip;
   white-space:nowrap;
   animation: 
-  typing 1s,
-  blink-caret 1s infinite;
+  typing 1s;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
@@ -246,6 +249,15 @@
   animation-timing-function: linear;
 }
 
+.typewriter3{
+  overflow-x: clip;
+  white-space:nowrap;
+  animation: 
+  typing 1.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
 .aniBtn{
   animation: fadeIn 3.5s;
   animation-fill-mode: forwards;
@@ -253,6 +265,17 @@
 
 .aniDesc{
   animation: fadeIn 1.5s;
+  animation-fill-mode: forwards;
+}
+
+.aniPages{
+  animation: fadeIn 1s;
+  animation-fill-mode: forwards;
+}
+
+.aniCreateCampaign{
+  left: -50%;
+  animation: slideRight 1.2s ease;
   animation-fill-mode: forwards;
 }
 
@@ -292,6 +315,10 @@
     visibility: visible;
  	  opacity: 1;
   }
+}
+
+@keyframes slideRight {
+  100% { left: 0; }
 }
 
 @keyframes typing {

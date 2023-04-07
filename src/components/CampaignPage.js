@@ -178,7 +178,7 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
   }
 
   return (
-    <div className='campaign-page-container' >
+    <div className='campaign-page-container aniPages' >
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}

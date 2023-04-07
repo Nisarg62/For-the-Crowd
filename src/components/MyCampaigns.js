@@ -15,14 +15,14 @@ function MyCampaigns({ setPageState, managerCampaigns, setCampaignIndex }) {
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-
-        <Heading style={{ marginBottom: '5%' }} >My Campaigns</Heading>
-
-        {
-          managerCampaigns.map((camp, ind) => (
-            <MyCampaignCard key={ind} setPageState={setPageState} camp={camp} setCampaignIndex={setCampaignIndex} />
-          ))
-        }
+        <div>
+          <Heading className='typewriter3'style={{ marginBottom: '5%'}}>My Campaigns</Heading>
+        </div>
+          {
+            managerCampaigns.map((camp, ind) => (
+                <MyCampaignCard key={ind} setPageState={setPageState} camp={camp} setCampaignIndex={setCampaignIndex} />
+            ))
+          }
     </div>
   )
 }

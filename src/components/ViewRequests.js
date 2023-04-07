@@ -16,7 +16,7 @@ function ViewRequests({ setPageState, setPState, donatedCampaigns, setCampaignIn
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
 
-        <Heading style={{ marginBottom: '5%' }} >Fund Requests <Text color='#0000005e' fontSize='ig' >Campaigns you have donated to</Text></Heading>
+        <Heading className='typewriter3' style={{ marginBottom: '5%' }} >Fund Requests <Text color='#0000005e' fontSize='ig' >Campaigns you have donated to</Text></Heading>
 
         {
           donatedCampaigns.map((camp, key) => (

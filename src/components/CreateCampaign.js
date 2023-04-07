@@ -94,14 +94,14 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
     }
 
   return (
-    <div className='form-container' >
+    <div className='form-container ' >
         <div onClick={handleHome} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', width: '15%' }} >
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-        <Heading style={{ marginBottom: '5%' }} >Create a New Campaign</Heading>
+        <Heading className='typewriter1' style={{ marginBottom: '5%' }} >Create a New Campaign</Heading>
 
-        <FormControl isInvalid={errorName} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorName} style={{ marginBottom: '3%' }} >
             <FormLabel>Campaign Name</FormLabel>
                 <InputGroup>
                     <Input type='text' value={input.name} onChange={(e) => {
@@ -116,7 +116,7 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                     <FormErrorMessage >Name is required.</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl isInvalid={errorDesc} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorDesc} style={{ marginBottom: '3%' }} >
             <FormLabel>Campaign Description</FormLabel>
                 <InputGroup>
                     <Input type='text' value={input.desc} onChange={(e) => {
@@ -131,7 +131,7 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                     <FormErrorMessage >Description is required.</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl isInvalid={errorUrl} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorUrl} style={{ marginBottom: '3%' }} >
             <FormLabel>Image URL</FormLabel>
                 <InputGroup>
                     <InputLeftAddon children='https://' />
@@ -147,7 +147,7 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                     <FormErrorMessage >Image URL is required. (FORMATS ACCEPTED : .jpg, .png, .jpeg)</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' style={{ marginBottom: '3%' }} >
             <FormLabel>Minimum Contribution Amount</FormLabel>
                 <InputGroup>
                     <Input type='number' value={input.minContri} onChange={(e) => {
@@ -163,7 +163,7 @@ function CreateCampaign({ setPageState, campaignFactory, signer, etherToWei, set
                     <FormErrorMessage >Minimum amount is required.</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl isInvalid={errorTarget} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorTarget} style={{ marginBottom: '3%' }} >
             <FormLabel>Target Amount</FormLabel>
                 <InputGroup>
                     <Input type='number' value={input.targetAmt} onChange={(e) => {

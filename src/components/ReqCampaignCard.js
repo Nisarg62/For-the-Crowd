@@ -12,7 +12,7 @@ function ReqCampaignCard({ setPageState, setPState, setCampaignIndex, camp }) {
         }
 
   return (
-    <Card direction={{ base: 'column', sm: 'row' }} variant={'outline'} style={ camp.active ? { marginBottom: '2%', boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" } : {marginBottom: '2%', boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px", backgroundColor:'#d6d6d6'}} >
+    <Card className='aniDesc' direction={{ base: 'column', sm: 'row' }} variant={'outline'} style={ camp.active ? { marginBottom: '2%', boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" } : {marginBottom: '2%', boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px", backgroundColor:'#d6d6d6'}} >
             <Image
             src={camp.url}
             borderRadius='lg'

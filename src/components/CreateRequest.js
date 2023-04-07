@@ -79,9 +79,9 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-        <Heading style={{ marginBottom: '5%' }} >Create a Withdrawal Request</Heading>
+        <Heading className='typewriter1' style={{ marginBottom: '5%' }} >Create a Withdrawal Request</Heading>
 
-        <FormControl style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' style={{ marginBottom: '3%' }} >
             <FormLabel>Request Description</FormLabel>
                 <InputGroup>
                     <Input type='text' value={input.reqDesc} onChange={(e) => {
@@ -96,7 +96,7 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
                     <FormErrorMessage >Description is required.</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl isInvalid={errorAmt} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorAmt} style={{ marginBottom: '3%' }} >
             <FormLabel>Amount in Ether</FormLabel>
                 <InputGroup>
                     <Input type='number' value={input.amt} onChange={(e) => {
@@ -112,7 +112,7 @@ function CreateRequest({ setPageState, campaign, signer, etherToWei, setCallData
                     <FormErrorMessage >Minimum amount is required.</FormErrorMessage>
                 )}
         </FormControl>
-        <FormControl isInvalid={errorAdd} style={{ marginBottom: '3%' }} >
+        <FormControl className='aniDesc' isInvalid={errorAdd} style={{ marginBottom: '3%' }} >
             <FormLabel>Recipient Ethereum Wallet Address</FormLabel>
                 <InputGroup>
                     <Input type='text' value={input.add} onChange={(e) => {
