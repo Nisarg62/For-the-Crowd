@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
+import axios from 'axios'
 import { ethers } from 'ethers';
 import { ChakraProvider, Divider, Heading, useToast } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
@@ -29,10 +30,9 @@ function App() {
   const [pageState, setPageState] = useState('home')
   const [pState, setPState] = useState('')
   const [totalEther, setTotalEther] = useState(0)
-
+  const [ethToUsd, setEthToUsd] = useState([]);
   const [campaignsLoading, setCampaignsLoading] = useState(true)
   const [campaignIndex, setCampaignIndex] = useState(0)
-
   const [metamask, setMetamask] = useState(true)
 
   const scrollTop = useRef()
@@ -576,6 +576,17 @@ function App() {
   }
 
   useEffect(() => {
+    axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=ETH,DASH&tsyms=BTC,USD,EUR&api_key=4d2fb25f67f0c398d8fcdbdb464046fbb940e7f5101d8f7ec9f62e46b08b72fc')
+      .then(response => {
+        setEthToUsd(response.data.ETH.USD);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+
+  useEffect(() => {
     getAllCampaignsData()
   }, [callData]);
   
@@ -621,7 +632,7 @@ function App() {
             </div>
             <Stats allCampaigns={allCampaigns} totalEther={totalEther} setTypeWriter={setTypeWriter} typewriter= {typewriter}/>
             <Heading fontSize='4xl' color={'white'} style={{ width:'23%', margin: '5%', marginBottom: '2%', marginTop: '8%' , display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} ><TbLayersLinked/> Active Campaigns</Heading>
-            <CardsContainer loading={campaignsLoading} setPageState={setPageState} allCampaigns={allCampaigns} setCampaignIndex={setCampaignIndex} setTypeWriter={setTypeWriter}/>
+            <CardsContainer loading={campaignsLoading} setPageState={setPageState} allCampaigns={allCampaigns} setCampaignIndex={setCampaignIndex} setTypeWriter={setTypeWriter} ethToUsd={ethToUsd}/>
             <Heading id='howitworks' fontSize='4xl' color={'white'} style={{ width:'21%', margin: '5%', marginBottom: '2%', marginTop: '8%' , display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} ><BiShowAlt/> How FTC Works</Heading>
             <Working/>
             </>
@@ -633,7 +644,8 @@ function App() {
           pageState === 'campaign'
           ?
           (
-            <CampaignPage setPageState={setPageState} setPState = {setPState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} etherToWei={etherToWei} setCallData={setCallData} />
+            <CampaignPage setPageState={setPageState} setPState = {setPState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} etherToWei={etherToWei} setCallData={setCallData} 
+            ethToUsd={ethToUsd} />
           )
           :
           null
@@ -651,7 +663,7 @@ function App() {
           pageState === 'viewRequest'
           ?
           (
-            <ViewRequest setPageState={setPageState} pState = {pState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} weiToEther={weiToEther} setCallData={setCallData} allCampaigns={allCampaigns} />
+            <ViewRequest setPageState={setPageState} pState = {pState} campaign={allCampaigns.find(camp => camp.index === campaignIndex)} currentAdd={address} signer={signer} weiToEther={weiToEther} setCallData={setCallData} allCampaigns={allCampaigns} ethToUsd={ethToUsd} />
           )
           :
           null
@@ -669,7 +681,8 @@ function App() {
           pageState === 'myCampaigns'
           ?
           (
-            <MyCampaigns setPageState={setPageState} managerCampaigns={managerCampaigns} setCampaignIndex={setCampaignIndex} />
+            <MyCampaigns setPageState={setPageState} managerCampaigns={managerCampaigns} setCampaignIndex={setCampaignIndex} 
+            ethToUsd={ethToUsd}/>
           )
           :
           null
@@ -678,7 +691,7 @@ function App() {
           pageState === 'viewRequests'
           ?
           (
-            <ViewRequests setPageState={setPageState} setPState={setPState} donatedCampaigns={donatedCampaigns} setCampaignIndex={setCampaignIndex} />
+            <ViewRequests setPageState={setPageState} setPState={setPState} donatedCampaigns={donatedCampaigns} setCampaignIndex={setCampaignIndex} ethToUsd={ethToUsd} />
           )
           :
           null

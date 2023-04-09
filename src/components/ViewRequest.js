@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { Button, Heading, Text, Table, Thead, Tbody, Tr, Th, Td, TableCaption, TableContainer, useToast, Skeleton } from '@chakra-ui/react'
 import { MdArrowBack } from 'react-icons/md'
 
-function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiToEther, setCallData, allCampaigns }) {
+function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiToEther, setCallData, allCampaigns, ethToUsd }) {
     
     const toast = useToast()
     const [loading, setLoading] = useState(true)
@@ -173,7 +173,7 @@ function ViewRequest({ setPageState, pState, campaign, currentAdd, signer, weiTo
             <MdArrowBack color='tomato'/>
             <Text color='tomato' fontWeight='bold'>Go Back</Text>
         </div>
-        <Heading className='aniDesc' style={{ marginBottom: '2%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >Withdrawal Requests <Text color='#0000006e' >{campaign.balance} ETH {`($${campaign.balance * 1661}`.substring(0, 7) +`)`}</Text> </Heading>
+        <Heading className='aniDesc' style={{ marginBottom: '2%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >Withdrawal Requests <Text color='#0000006e' >{campaign.balance} ETH {`($${campaign.balance * ethToUsd}`.substring(0, 7) +`)`}</Text> </Heading>
         <Text className='typewriter3' fontSize='2xl' style={{ marginBottom: '5%' }} >{campaign.title}</Text>
 
         <TableContainer>

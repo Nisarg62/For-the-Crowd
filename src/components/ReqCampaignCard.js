@@ -3,7 +3,7 @@ import { Button, Heading, Text } from '@chakra-ui/react'
 import { Card, CardBody, Stack, Image, Progress } from '@chakra-ui/react'
 import { FaHandHoldingUsd, FaHandsHelping } from 'react-icons/fa'
 
-function ReqCampaignCard({ setPageState, setPState, setCampaignIndex, camp }) {
+function ReqCampaignCard({ setPageState, setPState, setCampaignIndex, camp, ethToUsd }) {
 
     const handleCampaignPage = () => {
         setCampaignIndex(camp.index)
@@ -23,7 +23,7 @@ function ReqCampaignCard({ setPageState, setPState, setCampaignIndex, camp }) {
             <CardBody style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width:'100%' }} >
                 <Heading size='md' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between' }} >{camp.title}<FaHandsHelping color={'tomato'} /></Heading>
                 <Text color='tomato' fontSize='2xl' style={{display: 'flex', justifyContent: 'space-between'}} >
-                    {camp.balance} ETH {`($${camp.balance * 1661}`.substring(0, 7) +`)`}
+                    {camp.balance} ETH {`($${camp.balance * ethToUsd}`.substring(0, 7) +`)`}
                     <Button onClick={handleCampaignPage} variant='solid' colorScheme='orange' backgroundColor={'tomato'} rightIcon={<FaHandHoldingUsd/>}>
                     View Requests
                     </Button>

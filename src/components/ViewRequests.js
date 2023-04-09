@@ -3,7 +3,7 @@ import { Heading, Text } from '@chakra-ui/react'
 import { MdArrowBack } from 'react-icons/md'
 import ReqCampaignCard from './ReqCampaignCard'
 
-function ViewRequests({ setPageState, setPState, donatedCampaigns, setCampaignIndex }) {
+function ViewRequests({ setPageState, setPState, donatedCampaigns, setCampaignIndex, ethToUsd }) {
 
     const handleHome = () => {
         setPageState('home')
@@ -20,7 +20,7 @@ function ViewRequests({ setPageState, setPState, donatedCampaigns, setCampaignIn
 
         {
           donatedCampaigns.map((camp, key) => (
-            <ReqCampaignCard key={key} setPageState={setPageState} setPState={setPState} setCampaignIndex={setCampaignIndex} camp={camp} />
+            <ReqCampaignCard key={key} setPageState={setPageState} setPState={setPState} setCampaignIndex={setCampaignIndex} camp={camp} ethToUsd={ethToUsd} />
           ))
         }
     </div>

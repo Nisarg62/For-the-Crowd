@@ -1,11 +1,12 @@
 import React, {useState, useRef} from 'react'
+
 import { Button, Heading, Text, Card, CardBody, Progress, InputGroup, Input, InputRightAddon, Box, AlertDialog, AlertDialogBody, AlertDialogFooter, AlertDialogHeader, AlertDialogContent, AlertDialogOverlay, useDisclosure, Popover,PopoverTrigger,PopoverContent,PopoverHeader,PopoverBody,PopoverArrow,PopoverCloseButton, useToast, Link } from '@chakra-ui/react'
 import { AiFillInfoCircle } from 'react-icons/ai'
 import { BiDonateHeart } from 'react-icons/bi'
 import { BsFillPeopleFill, BsFillChatSquareQuoteFill } from 'react-icons/bs'
 import { FaAddressCard } from 'react-icons/fa'
 
-function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, etherToWei, setCallData }) {
+function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, etherToWei, setCallData, ethToUsd }) {
 
   const toast = useToast()
   const [switchLoading, setSwitchLoading] = useState(false)
@@ -157,7 +158,7 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
   const data = {
     minContri: {
       dis: 'Minimum Contribution',
-      val: `${campaign.minContri} ETH `+`($${campaign.minContri * 1661}`.substring(0, 7) +`)`,
+      val: `${campaign.minContri} ETH `+`($${campaign.minContri * ethToUsd}`.substring(0, 7) +`)`,
       icon: (<BiDonateHeart color='#ff634780' fontSize='300%' style={{ marginRight: '5%' }} />)
     },
     add: {
@@ -295,8 +296,8 @@ function CampaignPage({ setPageState,setPState, campaign, currentAdd, signer, et
                 null
               }
             </Text>
-            <Text fontSize='xl' fontWeight='bold' display='flex' >{campaign.balance} ETH <Text color='#ff634791' margin='0% 2%' >{`($${campaign.balance* 1661}`.substring(0, 7) +`)`}</Text> </Text>
-            <Text display='flex' >target of {campaign.targetAmt} ETH <Text color='#00000082' margin='0% 2%' >{`($${campaign.targetAmt * 1661}`.substring(0, 7) +`)`}</Text></Text>
+            <Text fontSize='xl' fontWeight='bold' display='flex' >{campaign.balance} ETH <Text color='#ff634791' margin='0% 2%' >{`($${campaign.balance* ethToUsd}`.substring(0, 7) +`)`}</Text> </Text>
+            <Text display='flex' >target of {campaign.targetAmt} ETH <Text color='#00000082' margin='0% 2%' >{`($${campaign.targetAmt * ethToUsd}`.substring(0, 7) +`)`}</Text></Text>
             <Progress value={(campaign.balance / campaign.targetAmt) * 100} size='xs' colorScheme='orange' marginTop='2%' />
           </CardBody>
         </Card>

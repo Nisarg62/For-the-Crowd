@@ -3,7 +3,7 @@ import MyCampaignCard from './MyCampaignCard'
 import { Heading, Text } from '@chakra-ui/react'
 import { MdArrowBack } from 'react-icons/md'
 
-function MyCampaigns({ setPageState, managerCampaigns, setCampaignIndex }) {
+function MyCampaigns({ setPageState, managerCampaigns, setCampaignIndex, ethToUsd }) {
 
     const handleHome = () => {
         setPageState('home')
@@ -20,7 +20,8 @@ function MyCampaigns({ setPageState, managerCampaigns, setCampaignIndex }) {
         </div>
           {
             managerCampaigns.map((camp, ind) => (
-                <MyCampaignCard key={ind} setPageState={setPageState} camp={camp} setCampaignIndex={setCampaignIndex} />
+                <MyCampaignCard key={ind} setPageState={setPageState} camp={camp} setCampaignIndex={setCampaignIndex} 
+                ethToUsd={ethToUsd} />
             ))
           }
     </div>

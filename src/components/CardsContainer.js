@@ -4,7 +4,7 @@ import { BiWalletAlt } from 'react-icons/bi'
 import { FaHandHoldingUsd, FaHandsHelping } from 'react-icons/fa'
 import Cards from './Cards'
 
-function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading, setTypeWriter}) {
+function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading, setTypeWriter, ethToUsd}) {
   const load = [1,2,3,4]
   return (
     <div className='cards-container' >
@@ -23,12 +23,12 @@ function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading,
                     <Heading size='md' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between' }} >data.title<FaHandsHelping color={'tomato'} /></Heading>
                     <Text fontSize='sm' style={{ display: 'flex', alignItems:'center', justifyContent: 'space-between', width: '35%' }} ><BiWalletAlt color='tomato' /> <b>{' 0x369...0b9'}</b></Text>
                     <Text color='tomato' fontSize='2xl' style={{display: 'flex', justifyContent: 'space-between'}} >
-                      data.balance ETH {`({data.balance*1661}`.substring(0, 7) +`)`}
+                      data.balance ETH {`({data.balance*ethToUsd}`.substring(0, 7) +`)`}
                       <Button variant='solid' colorScheme='orange' backgroundColor={'tomato'} rightIcon={<FaHandHoldingUsd/>}>
                       Support
                       </Button>
                     </Text>
-                    <Text color={'#0000008a'} >Target of data.targetAmt ETH {`({data.targetAmt * 1661}`.substring(0, 7) +`)`}</Text>
+                    <Text color={'#0000008a'} >Target of data.targetAmt ETH {`({data.targetAmt * ethToUsd}`.substring(0, 7) +`)`}</Text>
                     <Progress value={100} size='xs' colorScheme='orange' />
                   </Stack>
                 </CardBody>
@@ -39,7 +39,7 @@ function CardsContainer({ setPageState, allCampaigns, setCampaignIndex, loading,
           :
           allCampaigns.map((data, index) => data.active ? (
             <Cards setPageState={setPageState} data={data} key={index} setCampaignIndex={setCampaignIndex} 
-            setTypeWriter={setTypeWriter} />
+            setTypeWriter={setTypeWriter} ethToUsd={ethToUsd}/>
           ):null)
         }
     </div>
