@@ -245,7 +245,7 @@
   animation: 
   typing 1.3s;
   animation-fill-mode: forwards;
-  animation-delay: 1.3s;
+  animation-delay: 1.1s;
   animation-timing-function: linear;
 }
 
@@ -282,7 +282,7 @@
   animation: 
   typing 1.3s;
   animation-fill-mode: forwards;
-  animation-delay: 1.8s;
+  animation-delay: 2s;
   animation-timing-function: linear;
   visibility: hidden;
 }
