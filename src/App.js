@@ -585,7 +585,6 @@ function App() {
       });
   }, []);
 
-
   useEffect(() => {
     getAllCampaignsData()
   }, [callData]);
